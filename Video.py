@@ -1,10 +1,6 @@
 import flet as ft
-import settings
-import base64
-import threading
 import random
 import shared
-import time
 
 
 def play(video):        

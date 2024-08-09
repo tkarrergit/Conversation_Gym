@@ -3,11 +3,9 @@ from hugchat.login import Login
 import speech_recognition as sr
 import time
 import pyaudio
-import vosk
 import json
 import shared
 import random
-import Video
 import sys
 import pyttsx3
 

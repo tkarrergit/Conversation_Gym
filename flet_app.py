@@ -6,8 +6,6 @@ from all_functions import initialize_hugchat
 from all_functions import sr_speech_to_text
 import Video
 import settings
-import base64
-import threading
 import multiprocessing
 import re
 import sys
