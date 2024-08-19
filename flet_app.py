@@ -31,8 +31,10 @@ def hugchat_assistent(chatbot, user_input, new_conversation):
     if user_input:  
         
         starttime = time.time()
-        antwort = chatbot.chat(user_input, conversation = new_conversation)    
-        print(antwort)
+        antwort = chatbot.chat(user_input, conversation = new_conversation)
+        print("Hallo")    
+        print(str(antwort))
+        print("Hallo2")
         endtime = time.time()
         duration = endtime -starttime
         print(duration)
@@ -166,9 +168,8 @@ def main(page:ft.Page):
         # Stream response
         print("Hallo sprich_stream_chat_satz for-schleife")
         try: 
-            for resp in chatbot.query(
-                user_input,
-                stream=True, 
+            for resp in chatbot._stream_query(
+                user_input,                 
                 conversation = conversation,
             ):  
                 if resp:
