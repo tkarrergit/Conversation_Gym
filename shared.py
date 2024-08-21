@@ -19,6 +19,9 @@ def resource_path(relative_path):
 #coqui_tts
 #google_cloud_tts funktioniert nur mit Anmeldung bisher noch nicht
 #pyttsx3
+email = ""
+passwort = ""
+app_starts_count = ""
 stimme = "pyttsx3"
 
 smal_model = "assets/vosk-model-small-de-zamia-0.3"

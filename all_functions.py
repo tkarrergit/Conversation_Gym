@@ -7,7 +7,12 @@ import json
 import shared
 import random
 import sys
+import Video
 import pyttsx3
+
+
+
+
 
 
 def lese_email_passwort(dateiname):
@@ -395,6 +400,21 @@ def pyttsx3_tts(antwort):
     
     print("Tschüß pyttsx3")
 
-
+def stimme_auswahl_tts(stimme, antwort):
+    print(stimme)
+    """
+    if stimme =="gtts":
+        gtts_tts(antwort, language='de')
+    elif stimme == "coqui_tts":
+        coqui_tts(antwort)
+    elif stimme == "google_cloud_tts":
+        google_Cloud_tts(antwort, language_code='de-DE', voice_name=None, output_file='output.mp3')
+    """
+    if stimme == "pyttsx3":
+        print(Video.videos)
+        #Video.play(Video.videos[3])
+        pyttsx3_tts(antwort)
+        #Video.seek(Video.videos[3])
+        #Video.pause(Video.videos[3])
 #pyttsx3_tts("Hallo du da")
 
