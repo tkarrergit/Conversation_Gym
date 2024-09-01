@@ -6,6 +6,7 @@ import Video
 import update_conversation_record_container
 import re
 import auswahlmenue
+import vosk_functions
 
 def hugchat_assistent(chatbot, user_input, new_conversation):  
     if user_input:  
@@ -23,23 +24,23 @@ def hugchat_assistent(chatbot, user_input, new_conversation):
         antwort = "Leider keinen Input erkannt"
         return antwort 
 
-def hugchat_initialize(email, passwort, assistant):
+def hugchat_initialize(email, passwort, assistant, page):
         try:
             chatbot = all_functions.initialize_hugchat(email, passwort,)
             tomconversation = chatbot.new_conversation(assistant=assistant) 
             return tomconversation, chatbot
         except Exception as e:
             all_functions.pyttsx3_tts("Anmeldung fehlgeschlagen. Bitte starten sie die App neu und überprüfen sie ihre Anmeldedaten.")
-            auswahlmenue.auswahlmenue(email, passwort)
+            auswahlmenue.auswahlmenue(email, passwort, page)
 
-def hugchat_initialize_no_assistant(email, passwort):
+def hugchat_initialize_no_assistant(email, passwort, page):
     try:
         chatbot = all_functions.initialize_hugchat(email, passwort)
         tomconversation = chatbot.new_conversation() 
         return tomconversation, chatbot
     except Exception as e:
         all_functions.pyttsx3_tts("Anmeldung fehlgeschlagen. Bitte starten sie die App neu und überprüfen sie ihre Anmeldedaten.")
-        auswahlmenue.auswahlmenue(email, passwort)
+        auswahlmenue.auswahlmenue(email, passwort, page)
 
 def hugchat_assistent_stream(chatbot, user_input, newconversation):
     try:           
@@ -47,7 +48,7 @@ def hugchat_assistent_stream(chatbot, user_input, newconversation):
     except:
         print("No Input")
 
-def sprich_stream_chat_satz(chatbot, user_input, conversation):
+def sprich_stream_chat_satz(chatbot, user_input, conversation, page):
     #Spricht jeden vollständigen Satz der Antwort einen nach dem anderen.
     # Initialisiere eine leere Zeichenkette für den zusammenhängenden Text    
     full_response = ""
@@ -77,9 +78,9 @@ def sprich_stream_chat_satz(chatbot, user_input, conversation):
                         print(cleaned_sentence, end=" ")                
                         sys.stdout.flush()
                         full_response += cleaned_sentence
-                        if shared.stop_flag==False:
-                            update_conversation_record_container.update_response(cleaned_sentence)
-                            
+                        if vosk_functions.stop_flag==False:
+                            update_conversation_record_container.update_response(cleaned_sentence, page)
+                             
                             Video.play(Video.videos[0])
                             
                 

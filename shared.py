@@ -1,19 +1,17 @@
 import settings
-
+import all_functions
 import flet as ft
 import sys
-
-def resource_path(relative_path):
-    import os
-    """ Get absolute path to resource, works for dev and for PyInstaller """
-    try:
-        #PyInstaller creates a temp folder and stores path in MEIPASS
-        base_path = sys._MEIPASS
-    except Exception:
-        base_path = os.path.abspath(".")
-    return os.path.join(base_path, relative_path)
+import vosk_functions
+import utilitys
 
 
+
+vosk_recognizer = vosk_functions.vosk_model_init()
+
+
+dateiname_config = utilitys.resource_path("assets/config.txt")
+dateiname_gespraeche = utilitys.resource_path("assets/Gespraeche.txt")
 #Stimmauswahl aus folgenden möglichkeiten
 #gtts
 #coqui_tts
@@ -21,27 +19,29 @@ def resource_path(relative_path):
 #pyttsx3
 email = ""
 passwort = ""
-app_starts_count = ""
+
+email_field = ft.TextField(label="E-Mail")
+password_field = ft.TextField(label="shared.Passwort", password=True)
+
+
 stimme = "pyttsx3"
 
-smal_model = "assets/vosk-model-small-de-zamia-0.3"
-big_model = "assets/vosk-model-small-de-zamia-0.3"
-#"assets/vosk-model-de-0.21"
-vosk_model_path = big_model 
+ 
 
-stop_flag = False
+
 assistant = settings.meeting
 
-list_video_mann = ft.VideoMedia(resource_path("assets/Mann.mp4"))
-list_video_frau = ft.VideoMedia(resource_path("assets/Frau.mp4"))#, ft.VideoMedia("assets/Frau2.mp4")]
+list_video_mann = ft.VideoMedia(utilitys.resource_path("assets/Frau.mp4"))#ft.VideoMedia(utilitys.resource_path("assets/Mann.mp4"))
+list_video_frau = ft.VideoMedia(utilitys.resource_path("assets/Frau.mp4"))#, ft.VideoMedia("assets/Frau2.mp4")]
 video_path = list_video_frau
 
 frau_namen_list =["laura", "marie", "anna", "lena", "hanna", "emma"]
-mann_namen_list =["paul", "lukas", "leon", "max", "simon", "tim", "david"]
+mann_namen_list =["laura", "marie", "anna", "lena", "hanna", "emma"]#["paul", "lukas", "leon", "max", "simon", "tim", "david"]
 geschlecht_list = ["maennlich", "weiblich"]
 
 gespraechs_nummer = 0
-
+gespraeche = []
+gespraechs_editor_flag = True
 import random
 
 def generate_random_number():

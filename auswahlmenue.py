@@ -1,7 +1,7 @@
 import flet as ft
 import button_functions
 
-def auswahlmenue(email, passwort, page: ft.Page):
+def auswahlmenue(email, passwort, page:ft.Page):
        
         zugangsdaten_hinweis = ft.Text("",size=20, color=ft.colors.RED)
         if email == "maxmustermann@max.de" and passwort == "mustermann":
@@ -81,7 +81,7 @@ def auswahlmenue(email, passwort, page: ft.Page):
                     height = 600,
                     width=300,
                     border_radius=10,
-                    on_click=button_functions.coaching_button,                                       
+                    on_click=lambda _: button_functions.coaching_button(_, page),                                       
                     image_src = f"https://picsum.photos/300/600?{1}",
                     ),
                 ft.Container(

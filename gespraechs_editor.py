@@ -1,7 +1,10 @@
 import flet as ft
 import button_functions
 import shared
+import all_functions
 import Video
+import update_conversation_record_container as cr
+import coaching_gespraech
 
 class Gespräch:
     def __init__(self, id, name, promt):
@@ -37,11 +40,11 @@ for i in range(10):
         border_radius=10,
         alignment=ft.alignment.center,
         content=text,
-        on_click=lambda e, index=i: on_speicher_slot_click(e, index, dateiname)
+        on_click=lambda e, index=i: on_speicher_slot_click(e, index)
     )
     speicher_auswahl_button.append(container)
 
-def on_speicher_slot_click(e, index, dateiname, page:ft.Page):
+def on_speicher_slot_click(e, index, page:ft.Page):
     global speicher_slot_nummer  
             
     # Alle Container auf die Grundfarbe und Flagge zurücksetzen
@@ -53,7 +56,7 @@ def on_speicher_slot_click(e, index, dateiname, page:ft.Page):
             speicher_auswahl_button[i].bgcolor = "blue"
             container_states[i] = True                     
             speicher_slot_nummer = i + 1
-            lade_gespraech(dateiname)
+            lade_gespraech(shared.dateiname_gespraeche)
             
     
     # Seite neu rendern
@@ -79,8 +82,8 @@ def löschen_vor_speichern(dateiname):
         del lines[line_to_delete]
 
         # Entsprechendes Gespräch aus der Liste 'gespraeche' löschen
-        if line_to_delete < len(gespraeche):
-            del gespraeche[line_to_delete]
+        if line_to_delete < len(shared.gespraeche):
+            del shared.gespraeche[line_to_delete]
 
     # Schreiben der geänderten Zeilen zurück in die Datei
     with open(dateiname, 'w') as file:
@@ -97,19 +100,19 @@ def erstelle_und_speichere_neues_gespraech(e):
     promt = gespraechs_anweisung.value
     neues_id = speicher_slot_nummer
     neues_gespraech = Gespräch(neues_id, name, promt)        
-    gespraeche.append(neues_gespraech)
-    löschen_vor_speichern(dateiname)
-    speichere_gespraeche(gespraeche, dateiname)
+    shared.gespraeche.append(neues_gespraech)
+    löschen_vor_speichern(shared.dateiname)
+    speichere_gespraeche(shared.gespraeche, shared.dateiname)
     gespraechs_editor_seite()
-    print(gespraeche)             
-    return gespraeche
+    print(shared.gespraeche)             
+    return shared.gespraeche
 
-def ändere_gespraech(gespraeche, gespraech_id, neuer_name, neuer_promt):
-    for gespraech in gespraeche:
+def ändere_gespraech(gespraech_id, neuer_name, neuer_promt):
+    for gespraech in shared.gespraeche:
         if gespraech.id == gespraech_id:
             gespraech.name = neuer_name
             gespraech.promt = neuer_promt
-            return gespraeche
+            return shared.gespraeche
     raise ValueError(f"Gespräch mit ID {gespraech_id} nicht gefunden")
 """
 def gespraeche_liste():
@@ -120,8 +123,8 @@ def gespraeche_liste():
 
 def gespraechs_editor_gespraech_starten(e, page:ft.Page):
     global gespraechs_editor_flag
-    gespraechs_editor_flag = True
-    klient = person_namen()
+    gespraechs_editor_flag = shared.gespraechs_editor_flag
+    klient = all_functions.person_namen()
     antwort = gespraechs_anweisung.value
     print("gespraechs_anweisung.value = " + gespraechs_anweisung.value)
     print("Antwort = " + antwort)
@@ -215,11 +218,13 @@ def gespraechs_editor_gespraech_starten(e, page:ft.Page):
                         
         ],alignment=ft.MainAxisAlignment.CENTER))
             
-    coaching_gespraech(shared.email, shared.passwort, antwort, klient)
+    coaching_gespraech.coaching_gespraech(shared.email, shared.passwort, antwort, klient)
+
+def nichts():
+    pass
 
 
-
-def gespraechs_editor_seite(inhalt_textfeld_1, inhalt_textfeld_2):
+def gespraechs_editor_seite(inhalt_textfeld_1, inhalt_textfeld_2, page: ft.Page):
     global gespraechs_bezeichnung, gespraechs_anweisung       
     gespraechs_bezeichnung = ft.TextField(label="Gesprächsname", value=inhalt_textfeld_1)
     gespraechs_anweisung = ft.TextField(label="Gesprächs-Promt", value=inhalt_textfeld_2,multiline=True,min_lines=10,
@@ -278,7 +283,7 @@ def gespraechs_editor_seite(inhalt_textfeld_1, inhalt_textfeld_2):
                                     height = 30,
                                     width=150,
                                     border_radius=10,
-                                    on_click=email_passwort_ändern
+                                    on_click=nichts
                                 ),         
                             ],alignment=ft.MainAxisAlignment.CENTER),
                             ft.Row([
@@ -328,11 +333,11 @@ def gespraechs_editor_seite(inhalt_textfeld_1, inhalt_textfeld_2):
 
 
 def lade_inhalt_gespraeche_Datei():        
-    with open(dateiname, 'r') as file:
+    with open(shared.dateiname_gespraeche, 'r') as file:
         lines = file.readlines()
     
     for line in lines:
-        gespraeche.append(line)
+        shared.gespraeche.append(line)
 
 def lade_gespraech(dateiname):   
     
