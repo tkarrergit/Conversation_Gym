@@ -27,7 +27,7 @@ def coaching_button(e, page:ft.Page):
             if keyboard.is_pressed('space'):
                 stop = False
             else:
-                pass
+                   pass
 
         page.clean() 
         
@@ -56,7 +56,7 @@ def coaching_button(e, page:ft.Page):
                                             height = 50,
                                             width=960,                                    
                                             border_radius=10,
-                                            on_click=auswahl_button_coaching,                                       
+                                            on_click=lambda _:auswahl_button_coaching(_, page),                                       
                                             #image_src = f"https://picsum.photos/900/100?{1}",
                                             ),
                                 ],alignment=ft.MainAxisAlignment.CENTER),
@@ -117,8 +117,8 @@ def coaching_button(e, page:ft.Page):
              
         coaching_gespraech.coaching_gespraech(antwort, klient, page)
 
-def auswahl_button(e):              
-        auswahlmenue.auswahlmenue()
+def auswahl_button(e, page:ft.Page):              
+        auswahlmenue.auswahlmenue(shared.email, shared.passwort, page)
 
 def meeting_button(e, page:ft.Page):
         assistant = settings.coachee
@@ -134,7 +134,7 @@ def meeting_button(e, page:ft.Page):
                     ]),
                     Video.video_big,
                 ft.Row([
-                    ft.ElevatedButton(text= "Zurück zur Auswahl",on_click=auswahl_button)
+                    ft.ElevatedButton(text= "Zurück zur Auswahl",on_click=lambda _:auswahl_button(_, page),)
                 ],alignment=ft.MainAxisAlignment.CENTER)  
                 ]) ]))
         coaching_gespraech.sprachsteuerung(assistant)
@@ -195,12 +195,12 @@ def save_data(e, page:ft.Page):#shared.email und shared.passwort
         
         shared.email = shared.email_field.value
         shared.passwort = shared.password_field.value
-        shared.app_starts_count = shared.app_starts_count + 1
+        shared.app_starts_count = int(shared.app_starts_count) + 1
 
-        if shared.email and shared.password:
+        if shared.email and shared.passwort:
             try:
                 with open(all_functions.resource_path("assets/config.txt"), "w") as file:
-                    file.write(f"{shared.email}\n{shared.password}\n{shared.app_starts_count}")
+                    file.write(f"{shared.email}\n{shared.passwort}\n{shared.app_starts_count}")
                     
                 snack_bar = ft.Text("Daten erfolgreich gespeichert!", bgcolor=ft.colors.GREEN)
                 page.add(snack_bar)
@@ -210,12 +210,12 @@ def save_data(e, page:ft.Page):#shared.email und shared.passwort
                 snack_bar = ft.Text(f"Fehler beim Speichern: {e}", bgcolor=ft.colors.RED)
                 page.add(snack_bar)
         else:            
-            snack_bar = ft.Text(f"Bitte E-Mail und shared.Passwort eingeben.", bgcolor=ft.colors.RED)
+            snack_bar = ft.Text(f"Bitte E-Mail und Passwort eingeben.", bgcolor=ft.colors.RED)
             page.add(snack_bar)
 
 def einstellungen_button(e, page:ft.Page):
-        shared.email, shared.passwort, app_starts_count = all_functions.lese_email_passwort()
-        email_field, password_field = utilitys.email_passwort_field(shared.email, shared.passwort)
+        shared.email, shared.passwort = all_functions.lese_email_passwort()
+        email_field, password_field = utilitys.email_passwort_field()
 
         page.clean()
         page.add(ft.Stack([
@@ -236,7 +236,7 @@ def einstellungen_button(e, page:ft.Page):
                                         height = 30,
                                         width=150,
                                         border_radius=10,
-                                        on_click=save_data
+                                        on_click=lambda _: save_data(_, page),
                                     ),
                                     ft.Container(ft.Text("Ändern"),
                                         margin=20,                                        
@@ -245,7 +245,7 @@ def einstellungen_button(e, page:ft.Page):
                                         height = 30,
                                         width=150,
                                         border_radius=10,
-                                        on_click=shared.email_shared.passwort_ändern
+                                        on_click=lambda _: email_passwort_ändern(_, page),
                                     ),         
                                 ],alignment=ft.MainAxisAlignment.CENTER),
                                 ft.Row([
@@ -256,7 +256,7 @@ def einstellungen_button(e, page:ft.Page):
                                             height = 30,
                                             width=330,
                                             border_radius=10,
-                                            on_click=auswahl_button),
+                                            on_click=lambda _:auswahl_button(_, page)),
                                 ],alignment=ft.MainAxisAlignment.CENTER),
                                 
                             ],
@@ -292,7 +292,7 @@ def einstellungen_button(e, page:ft.Page):
             
         )
 
-def gespraechs_editor_button(e):
+def gespraechs_editor_button(e, page:ft.Page):
         global gespraechs_bezeichnung, gespraechs_anweisung, dateiname, inhalt_textfeld_1, inhalt_textfeld_2 
         global gespraeche
         gespraeche = shared.gespraeche       
@@ -303,7 +303,8 @@ def gespraechs_editor_button(e):
             max_lines=10,)
         inhalt_textfeld_1 = ""
         inhalt_textfeld_2 = ""
-        gespraechs_editor.gespraechs_editor_seite(inhalt_textfeld_1, inhalt_textfeld_2)
+        gespraechs_editor.add_buttons(page)
+        gespraechs_editor.gespraechs_editor_seite(page, inhalt_textfeld_1, inhalt_textfeld_2)
 
 
     #EMAIL und shared.PASSWORT eingabe Anfang
@@ -335,7 +336,7 @@ def email_passwort_ändern(e, page:ft.Page):
                                     height = 30,
                                     width=150,
                                     border_radius=10,
-                                    on_click=save_data
+                                    on_click=lambda _: save_data(_, page),
                                 ),
                                 ft.Container(ft.Text("Ändern"),
                                     margin=20,                                        
@@ -344,7 +345,7 @@ def email_passwort_ändern(e, page:ft.Page):
                                     height = 30,
                                     width=150,
                                     border_radius=10,
-                                    on_click=email_passwort_ändern
+                                    on_click=lambda _:email_passwort_ändern(_, page),
                                 ),                             
                             ], alignment = ft.MainAxisAlignment.CENTER),
                             ft.Row([
@@ -354,7 +355,7 @@ def email_passwort_ändern(e, page:ft.Page):
                                         height = 30,
                                         width=330,
                                         border_radius=10,
-                                        on_click=auswahl_button,)
+                                        on_click=lambda _:auswahl_button(_, page),)
                             ],alignment=ft.MainAxisAlignment.CENTER),
                             
                             ],

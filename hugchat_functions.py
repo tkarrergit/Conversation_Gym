@@ -26,7 +26,7 @@ def hugchat_assistent(chatbot, user_input, new_conversation):
 
 def hugchat_initialize(email, passwort, assistant, page):
         try:
-            chatbot = all_functions.initialize_hugchat(email, passwort,)
+            chatbot = all_functions.initialize_hugchat(email, passwort)
             tomconversation = chatbot.new_conversation(assistant=assistant) 
             return tomconversation, chatbot
         except Exception as e:
@@ -42,9 +42,9 @@ def hugchat_initialize_no_assistant(email, passwort, page):
         all_functions.pyttsx3_tts("Anmeldung fehlgeschlagen. Bitte starten sie die App neu und überprüfen sie ihre Anmeldedaten.")
         auswahlmenue.auswahlmenue(email, passwort, page)
 
-def hugchat_assistent_stream(chatbot, user_input, newconversation):
+def hugchat_assistent_stream(chatbot, user_input, newconversation, page):
     try:           
-        sprich_stream_chat_satz(chatbot, user_input, newconversation)
+        sprich_stream_chat_satz(chatbot, user_input, newconversation, page)
     except:
         print("No Input")
 
@@ -55,6 +55,7 @@ def sprich_stream_chat_satz(chatbot, user_input, conversation, page):
     current_sentence = ""
     satzflag = True
     starttime = time.time()
+    stimme = shared.stimme
     # Stream response
     print("Hallo sprich_stream_chat_satz for-schleife")
     try: 

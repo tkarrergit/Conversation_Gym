@@ -30,21 +30,29 @@ class Gespräch:
 container_states = [False] * 10
 # Eine Liste, um die speicher_auswahl_button´s zu speichern
 speicher_auswahl_button = []
-#Die Liste wird mit sechs speicher_auswahl_button´s befüllt
-for i in range(10):
-    text = ft.Text(f"{i + 1}")
-    container = ft.Container(
-        width=54,
-        height=30,
-        bgcolor="white",
-        border_radius=10,
-        alignment=ft.alignment.center,
-        content=text,
-        on_click=lambda e, index=i: on_speicher_slot_click(e, index)
-    )
-    speicher_auswahl_button.append(container)
+def add_buttons(page: ft.Page):
+    # Clear existing buttons before adding new ones
+    speicher_auswahl_button.clear()
 
-def on_speicher_slot_click(e, index, page:ft.Page):
+    # Populate the button list
+    for i in range(10):
+        text = ft.Text(f"{i + 1}")
+        container = ft.Container(
+            width=54,
+            height=30,
+            bgcolor="white",
+            border_radius=10,
+            alignment=ft.alignment.center,
+            content=text,
+            on_click=lambda e, index=i: on_speicher_slot_click(page, index)  # Fix lambda function
+        )
+        speicher_auswahl_button.append(container)
+    
+    
+
+
+
+def on_speicher_slot_click(page:ft.Page, index):
     global speicher_slot_nummer  
             
     # Alle Container auf die Grundfarbe und Flagge zurücksetzen
@@ -56,7 +64,7 @@ def on_speicher_slot_click(e, index, page:ft.Page):
             speicher_auswahl_button[i].bgcolor = "blue"
             container_states[i] = True                     
             speicher_slot_nummer = i + 1
-            lade_gespraech(shared.dateiname_gespraeche)
+            lade_gespraech(shared.dateiname_gespraeche, page)
             
     
     # Seite neu rendern
@@ -92,18 +100,18 @@ def löschen_vor_speichern(dateiname):
 
 def speichere_gespraeche(gespraeche, dateiname):
     with open(dateiname, 'w') as f:
-        for gespraech in gespraeche:
+        for gespraech in shared.gespraeche:
             f.write(gespraech.to_string() + '\n')
 
-def erstelle_und_speichere_neues_gespraech(e):        
+def erstelle_und_speichere_neues_gespraech(e, page, inhalt_textfeld_1, inhalt_textfeld_2):        
     name = gespraechs_bezeichnung.value
     promt = gespraechs_anweisung.value
     neues_id = speicher_slot_nummer
     neues_gespraech = Gespräch(neues_id, name, promt)        
     shared.gespraeche.append(neues_gespraech)
-    löschen_vor_speichern(shared.dateiname)
-    speichere_gespraeche(shared.gespraeche, shared.dateiname)
-    gespraechs_editor_seite()
+    löschen_vor_speichern(shared.dateiname_gespraeche)
+    speichere_gespraeche(shared.gespraeche, shared.dateiname_gespraeche)
+    gespraechs_editor_seite(page, inhalt_textfeld_1, inhalt_textfeld_2)
     print(shared.gespraeche)             
     return shared.gespraeche
 
@@ -220,11 +228,11 @@ def gespraechs_editor_gespraech_starten(e, page:ft.Page):
             
     coaching_gespraech.coaching_gespraech(shared.email, shared.passwort, antwort, klient)
 
-def nichts():
+def nichts(e):
     pass
 
 
-def gespraechs_editor_seite(inhalt_textfeld_1, inhalt_textfeld_2, page: ft.Page):
+def gespraechs_editor_seite(page: ft.Page, inhalt_textfeld_1, inhalt_textfeld_2):
     global gespraechs_bezeichnung, gespraechs_anweisung       
     gespraechs_bezeichnung = ft.TextField(label="Gesprächsname", value=inhalt_textfeld_1)
     gespraechs_anweisung = ft.TextField(label="Gesprächs-Promt", value=inhalt_textfeld_2,multiline=True,min_lines=10,
@@ -256,7 +264,7 @@ def gespraechs_editor_seite(inhalt_textfeld_1, inhalt_textfeld_2, page: ft.Page)
                                     height = 30,
                                     width=150,
                                     border_radius=10,
-                                    on_click=gespraechs_editor_gespraech_starten
+                                    on_click=lambda _:gespraechs_editor_gespraech_starten(_, page)
                                 ),
                                 ft.Container(ft.Text("Laden"),
                                                                         
@@ -265,7 +273,7 @@ def gespraechs_editor_seite(inhalt_textfeld_1, inhalt_textfeld_2, page: ft.Page)
                                     height = 30,
                                     width=150,
                                     border_radius=10,
-                                    on_click=erstelle_und_speichere_neues_gespraech
+                                    on_click=lambda _:erstelle_und_speichere_neues_gespraech(_, page, inhalt_textfeld_1, inhalt_textfeld_2)
                                 ),
                                 ft.Container(ft.Text("Speichern"),
                                                                         
@@ -274,7 +282,7 @@ def gespraechs_editor_seite(inhalt_textfeld_1, inhalt_textfeld_2, page: ft.Page)
                                     height = 30,
                                     width=150,
                                     border_radius=10,
-                                    on_click=erstelle_und_speichere_neues_gespraech
+                                    on_click=lambda _:erstelle_und_speichere_neues_gespraech(_, page, inhalt_textfeld_1, inhalt_textfeld_2)
                                 ),
                                 ft.Container(ft.Text("Ändern"),
                                                                             
@@ -294,7 +302,7 @@ def gespraechs_editor_seite(inhalt_textfeld_1, inhalt_textfeld_2, page: ft.Page)
                                         height = 30,
                                         width=330,
                                         border_radius=10,
-                                        on_click=button_functions.auswahl_button),
+                                        on_click=lambda _:button_functions.auswahl_button(_, page)),
                             ],alignment=ft.MainAxisAlignment.CENTER),
                             
                         ],
@@ -339,7 +347,7 @@ def lade_inhalt_gespraeche_Datei():
     for line in lines:
         shared.gespraeche.append(line)
 
-def lade_gespraech(dateiname):   
+def lade_gespraech(dateiname, page):   
     
     with open(dateiname, 'r') as file:
         lines = file.readlines()
@@ -356,6 +364,6 @@ def lade_gespraech(dateiname):
                 print(gespraech.promt)
                 inhalt_textfeld_1 = gespraech.name
                 inhalt_textfeld_2 = gespraech.promt
-                gespraechs_editor_seite(inhalt_textfeld_1, inhalt_textfeld_2)
+                gespraechs_editor_seite(page, inhalt_textfeld_1, inhalt_textfeld_2)
             
     

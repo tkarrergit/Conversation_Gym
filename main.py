@@ -14,7 +14,6 @@ import auswahlmenue
 import button_functions
 import utilitys
 import vosk_functions
-
 #Huggingchat Assistanten Funktion    
 global stimme  
 
@@ -124,11 +123,11 @@ def main(page:ft.Page):
     )
     
     
-    vosk_recognizer = shared.vosk_recognizer
+    #vosk_recognizer = shared.vosk_recognizer
 
     
-    save_button = ft.ElevatedButton("Speichern", on_click=button_functions.save_data)
-    aendern_button = ft.ElevatedButton("Ändern", on_click=button_functions.email_passwort_ändern)
+    #save_button = ft.ElevatedButton("Speichern", on_click=button_functions.save_data)
+    #aendern_button = ft.ElevatedButton("Ändern", on_click=button_functions.email_passwort_ändern)
 
     #EMAIL und shared.PASSWORT eingabe Ende
 

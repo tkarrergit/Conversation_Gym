@@ -2,21 +2,19 @@ from hugchat import hugchat
 from hugchat.login import Login
 import speech_recognition as sr
 import time
-import pyaudio
-import json
-
 import random
 import sys
 import Video
 import pyttsx3
 import flet as ft
 from  vosk import Model, KaldiRecognizer
+import shared
 
 
 
 
 
-def lese_email_passwort(dateiname):
+def lese_email_passwort():
     """
     Liest E-Mail und Passwort aus einer Textdatei.
     
@@ -27,17 +25,17 @@ def lese_email_passwort(dateiname):
         tuple: E-Mail und Passwort als Tupel
     """
     try:
-        with open(dateiname, 'r') as f:
+        with open(shared.dateiname_config, 'r') as f:
             inhalt = f.readlines()
             email = inhalt[0].strip()
             passwort = inhalt[1].strip()
         return email, passwort
     except FileNotFoundError:
-        print(f"Datei '{dateiname}' nicht gefunden.")
+        print(f"Datei '{shared.dateiname_config}' nicht gefunden.")
     except IndexError:
         print("Datei hat nicht das erwartete Format (E-Mail in Zeile 1, Passwort in Zeile 2).")
 
-def schreibe_email_passwort(dateiname, email, passwort):
+def schreibe_email_passwort(email, passwort):
     """
     Schreibt E-Mail und Passwort in eine Textdatei.
     
@@ -47,10 +45,10 @@ def schreibe_email_passwort(dateiname, email, passwort):
         passwort (str): Passwort
     """
     try:
-        with open(dateiname, 'w') as f:
+        with open(shared.dateiname_config, 'w') as f:
             f.write(email + "\n")
             f.write(passwort)
-        print(f"E-Mail und Passwort wurden in '{dateiname}' geschrieben.")
+        print(f"E-Mail und Passwort wurden in '{shared.dateiname_config}' geschrieben.")
     except Exception as e:
         print(f"Fehler beim Schreiben in die Datei: {e}")
 
@@ -365,7 +363,7 @@ def stimme_auswahl_tts(stimme, antwort):
         google_Cloud_tts(antwort, language_code='de-DE', voice_name=None, output_file='output.mp3')
     """
     if stimme == "pyttsx3":
-        print(Video.videos)
+        #print(Video.videos)
         #Video.play(Video.videos[3])
         pyttsx3_tts(antwort)
         #Video.seek(Video.videos[3])

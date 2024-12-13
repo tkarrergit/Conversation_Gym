@@ -1,5 +1,5 @@
 import settings
-import all_functions
+
 import flet as ft
 import sys
 import vosk_functions
@@ -19,9 +19,9 @@ dateiname_gespraeche = utilitys.resource_path("assets/Gespraeche.txt")
 #pyttsx3
 email = ""
 passwort = ""
-
+app_starts_count = 0
 email_field = ft.TextField(label="E-Mail")
-password_field = ft.TextField(label="shared.Passwort", password=True)
+password_field = ft.TextField(label="Passwort", password=True)
 
 
 stimme = "pyttsx3"

@@ -106,7 +106,7 @@ def coaching_gespraech(antwort, klient, page):
 
 def sprachsteuerung_coaching(user_input, chatbot, new_conversation, page: ft.Page): 
     
-    hf.hugchat_assistent_stream(chatbot, user_input, new_conversation)
+    hf.hugchat_assistent_stream(chatbot, user_input, new_conversation, page)
     
     while vosk_functions.stop_flag == False:       
         user_input = vosk_functions.get_user_input(shared.vosk_recognizer)
@@ -114,7 +114,7 @@ def sprachsteuerung_coaching(user_input, chatbot, new_conversation, page: ft.Pag
         page.add(cr.cl)
         #user_input = sr_speech_to_text() 
         if vosk_functions.stop_flag==False:       
-            hf.hugchat_assistent_stream(chatbot, user_input, new_conversation)
+            hf.hugchat_assistent_stream(chatbot, user_input, new_conversation, page)
             page.add(cr.cl)
 
 

@@ -1,6 +1,8 @@
 import flet as ft
 import button_functions
 
+
+
 def auswahlmenue(email, passwort, page:ft.Page):
        
         zugangsdaten_hinweis = ft.Text("",size=20, color=ft.colors.RED)
@@ -188,7 +190,7 @@ def auswahlmenue(email, passwort, page:ft.Page):
                 height = 600,
                 width=300,
                 border_radius=10,
-                on_click=button_functions.gespraechs_editor_button,                                       
+                on_click=lambda _: button_functions.gespraechs_editor_button(_, page),                                       
                 image_src = f"https://picsum.photos/300/600?{4}", image_fit ="cover",
                 ),
                 ft.Container(
@@ -212,7 +214,7 @@ def auswahlmenue(email, passwort, page:ft.Page):
                     height = 600,
                     width=300,
                     border_radius=10,
-                    on_click=button_functions.einstellungen_button,                                       
+                    on_click=lambda _: button_functions.einstellungen_button(_, page),                                       
                     image_src = f"https://picsum.photos/300/600?{5}", image_fit ="cover",
                     ),
                 ],alignment=ft.MainAxisAlignment.CENTER),                                     
