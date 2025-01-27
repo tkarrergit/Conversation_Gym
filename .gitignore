@@ -1,2 +1,15 @@
-venv\
-venv
+__pycache__/
+.idea/
+venv/
+.env
+tests
+cookies_snapshot/
+
+# Packaging
+build/
+dist/
+*.egg-info/
+*.egg
+
+# Sphinx
+docs/_build
