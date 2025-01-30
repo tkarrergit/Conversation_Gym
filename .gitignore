@@ -4,6 +4,7 @@ venv/
 .env
 tests
 cookies_snapshot/
+assets/config.txt
 
 # Packaging
 build/
