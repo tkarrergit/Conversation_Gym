@@ -15,18 +15,10 @@ import button_functions
 import utilitys
 import vosk_functions
 import coaching_gespraech
-#Huggingchat Assistanten Funktion    
+  
 global stimme  
 
 
-#----------Code-Gliederung----------
-#1.0    Interne Funktionen                              Konnten aufgrund von doppelten (hinher Import) Importen nicht in all_functions.py.
-#2.0    Main Window
-#2.1    Funktionen innerhalb der APP
-#2.1.1    Vorbereitung
-#2.1.2  Coaching schruftlicher Chatverlauf
-#2.2    Auswahlmenue.auswahlmenue
-  
 shared.gespraechs_editor_flag = False
 
 shared.email, shared.passwort, vosk_functions.app_starts_count = utilitys.lese_email_passwort()
@@ -35,12 +27,6 @@ def check_hugchat():
     newconversation, chatbot = hf.hugchat_initialize(shared.email, shared.passwort, settings.coaching, page)
     print(newconversation and chatbot)
     hf.hugchat_assistent_stream(chatbot, "Wie heißt du", newconversation)
-
-
-#Stimmauswahl Funktion 
- 
-
-
 
 
 #2.0    Main Window
@@ -57,16 +43,6 @@ def main(page:ft.Page):
         "Kanit": "https://raw.githubusercontent.com/google/fonts/master/ofl/kanit/Kanit-Bold.ttf",
         "Open Sans": "fonts/OpenSans-Regular.ttf",
     }
-    
-    """
-    shared.email, shared.passwort, shared.app_starts_count= lese_email_passwort("config.txt")
-    assistant = settings.coachee
-    new_conversation, chatbot = hf.hugchat_initialize(shared.email, shared.passwort, assistant)
-    print(new_conversation)
-    print(chatbot)
-    print(stimme)
-    sprich_stream_chat_satz(chatbot, "Hallo wie geht es dir", new_conversation)
-    """
 
     shared.email, shared.passwort, vosk_functions.app_starts_count = utilitys.lese_email_passwort()
 
@@ -80,12 +56,7 @@ def main(page:ft.Page):
     else:
         text= "Offline Spracherkennung wird vorbereitet..."
 
-    #user_input = "Wie heißt dein LLM Modell"
-    #assistant = settings.coaching  
-    #new_conversation, chatbot = hf.hugchat_initialize(shared.email, shared.passwort, assistant, page)  
-    #antwort = hf.hugchat_assistent_stream(chatbot, user_input, new_conversation, page)
-   # print(antwort)
-
+ 
     page.clean()
     page.add(
         ft.Column([
@@ -132,13 +103,6 @@ def main(page:ft.Page):
     )
     
     
-    #vosk_recognizer = shared.vosk_recognizer
-
-    
-    #save_button = ft.ElevatedButton("Speichern", on_click=button_functions.save_data)
-    #aendern_button = ft.ElevatedButton("Ändern", on_click=button_functions.email_passwort_ändern)
-
-    #EMAIL und shared.PASSWORT eingabe Ende
 
     auswahlmenue.auswahlmenue(shared.email, shared.passwort, page)
     
