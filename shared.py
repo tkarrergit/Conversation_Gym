@@ -41,7 +41,7 @@ geschlecht_list = ["maennlich", "weiblich"]
 
 gespraechs_nummer = 0
 gespraeche = []
-gespraechs_editor_flag = True
+gespraechs_editor_flag = False
 import random
 
 def generate_random_number():

@@ -370,3 +370,7 @@ def stimme_auswahl_tts(stimme, antwort):
         #Video.pause(Video.videos[3])
 #pyttsx3_tts("Hallo du da")
 
+"""
+chatbot = initialize_hugchat("sand.burg@mail.de", "Strand42!")
+convesation = hugchat_new_conversation(chatbot)
+no_stream_chat(chatbot, "Wie heißt du", convesation)"""

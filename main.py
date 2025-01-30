@@ -14,6 +14,7 @@ import auswahlmenue
 import button_functions
 import utilitys
 import vosk_functions
+import coaching_gespraech
 #Huggingchat Assistanten Funktion    
 global stimme  
 
@@ -26,15 +27,15 @@ global stimme
 #2.1.2  Coaching schruftlicher Chatverlauf
 #2.2    Auswahlmenue.auswahlmenue
   
+shared.gespraechs_editor_flag = False
 
+shared.email, shared.passwort, vosk_functions.app_starts_count = utilitys.lese_email_passwort()
 
-
-"""
-def check_hugchat(shared.email, shared.passwort):
-    newconversation, chatbot = hf.hugchat_initialize(shared.email, shared.passwort, settings.coaching)
+def check_hugchat():
+    newconversation, chatbot = hf.hugchat_initialize(shared.email, shared.passwort, settings.coaching, page)
     print(newconversation and chatbot)
     hf.hugchat_assistent_stream(chatbot, "Wie heißt du", newconversation)
-"""
+
 
 #Stimmauswahl Funktion 
  
@@ -68,6 +69,9 @@ def main(page:ft.Page):
     """
 
     shared.email, shared.passwort, vosk_functions.app_starts_count = utilitys.lese_email_passwort()
+
+    
+
     app_starts_count = int(vosk_functions.app_starts_count)
 
     #print(shared.email, shared.passwort)
@@ -75,8 +79,13 @@ def main(page:ft.Page):
         text= ""
     else:
         text= "Offline Spracherkennung wird vorbereitet..."
-  
-     
+
+    #user_input = "Wie heißt dein LLM Modell"
+    #assistant = settings.coaching  
+    #new_conversation, chatbot = hf.hugchat_initialize(shared.email, shared.passwort, assistant, page)  
+    #antwort = hf.hugchat_assistent_stream(chatbot, user_input, new_conversation, page)
+   # print(antwort)
+
     page.clean()
     page.add(
         ft.Column([
@@ -134,4 +143,4 @@ def main(page:ft.Page):
     auswahlmenue.auswahlmenue(shared.email, shared.passwort, page)
     
 ft.app(main,assets_dir=all_functions.resource_path("assets"))
-#check_hugchat()
+

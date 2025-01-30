@@ -1,12 +1,14 @@
-import time
 import all_functions
-import sys
-import shared
-import Video
-import update_conversation_record_container
-import re
 import auswahlmenue
+import time
+import shared
+import settings
+import re
+import Video
+import sys
+import update_conversation_record_container
 import vosk_functions
+
 
 def hugchat_assistent(chatbot, user_input, new_conversation):  
     if user_input:  
@@ -24,32 +26,31 @@ def hugchat_assistent(chatbot, user_input, new_conversation):
         antwort = "Leider keinen Input erkannt"
         return antwort 
 
-def hugchat_initialize(email, passwort, assistant, page):
+def hugchat_initialize(email, passwort, assistant):
         try:
             chatbot = all_functions.initialize_hugchat(email, passwort)
             tomconversation = chatbot.new_conversation(assistant=assistant) 
             return tomconversation, chatbot
         except Exception as e:
             all_functions.pyttsx3_tts("Anmeldung fehlgeschlagen. Bitte starten sie die App neu und überprüfen sie ihre Anmeldedaten.")
-            auswahlmenue.auswahlmenue(email, passwort, page)
+            auswahlmenue.auswahlmenue(email, passwort)
 
-def hugchat_initialize_no_assistant(email, passwort, page):
+def hugchat_initialize_no_assistant(email, passwort):
     try:
         chatbot = all_functions.initialize_hugchat(email, passwort)
         tomconversation = chatbot.new_conversation() 
         return tomconversation, chatbot
     except Exception as e:
         all_functions.pyttsx3_tts("Anmeldung fehlgeschlagen. Bitte starten sie die App neu und überprüfen sie ihre Anmeldedaten.")
-        auswahlmenue.auswahlmenue(email, passwort, page)
+        auswahlmenue.auswahlmenue(email, passwort)
 
-def hugchat_assistent_stream(chatbot, user_input, newconversation, page):
-    print("hugchat_assistent_stream user_input: " + user_input)
+def hugchat_assistent_stream(chatbot, user_input, newconversation):
     try:           
-        sprich_stream_chat_satz(chatbot, user_input, newconversation, page)
+        sprich_stream_chat_satz(chatbot, user_input, newconversation)
     except:
         print("No Input")
 
-def sprich_stream_chat_satz(chatbot, user_input, conversation, page):
+def sprich_stream_chat_satz(chatbot, user_input, conversation):
     #Spricht jeden vollständigen Satz der Antwort einen nach dem anderen.
     # Initialisiere eine leere Zeichenkette für den zusammenhängenden Text    
     full_response = ""
@@ -58,7 +59,7 @@ def sprich_stream_chat_satz(chatbot, user_input, conversation, page):
     starttime = time.time()
     stimme = shared.stimme
     # Stream response
-    print("Hallo sprich_stream_chat_satz for-schleife user_input: " + user_input)
+    print("Hallo sprich_stream_chat_satz for-schleife")
     try: 
         for resp in chatbot._stream_query(
             user_input,                 
@@ -81,7 +82,7 @@ def sprich_stream_chat_satz(chatbot, user_input, conversation, page):
                         sys.stdout.flush()
                         full_response += cleaned_sentence
                         if vosk_functions.stop_flag==False:
-                            update_conversation_record_container.update_response(cleaned_sentence, page)
+                            update_conversation_record_container.update_response(cleaned_sentence)
                              
                             Video.play(Video.videos[0])
                             
@@ -105,3 +106,9 @@ def sprich_stream_chat_satz(chatbot, user_input, conversation, page):
                     stimme =shared.stimme
                     all_functions.stimme_auswahl_tts(stimme, "Dein Klient ist gerade nicht erreichbar....versuch es gleich nochmal....")
 
+def check_hugchat():
+        newconversation, chatbot = hugchat_initialize("sand.burg@mail.de", "Strand42!", settings.coaching)
+        print(newconversation and chatbot)
+        hugchat_assistent_stream(chatbot, "Wie heißt dein llm modell", newconversation)
+
+check_hugchat()

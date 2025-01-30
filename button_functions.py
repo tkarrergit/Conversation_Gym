@@ -16,7 +16,8 @@ def coaching_button(e, page:ft.Page):
         gespraechs_editor_flag  = False   
         antwort = coaching_gespraech.coaching_gespraech_vorbereitung(page) 
         klient = utilitys.person_namen()
-        print(klient)  
+        print("Klient: " + str(klient))
+        print("Antwort Coaching Gespräch Vorbereitung: " + str(antwort))
         print("2: " + str(shared.video_path) )  
         coaching_video_row, meeting_video_row = Video.video_row()     
         print("Nach Video Row " + str(Video.videos))

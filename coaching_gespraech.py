@@ -128,3 +128,4 @@ def sprachsteuerung(assistant, page:ft.Page):
         if vosk_functions.stop_flag==False:       
             hf.hugchat_assistent_stream(chatbot, user_input, new_conversation)
             page.add(cr.cl)
+
