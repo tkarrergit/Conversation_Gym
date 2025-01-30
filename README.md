@@ -1,5 +1,7 @@
-Conversation Gym
+#Conversation Gym
+
 Version: Early Development Stage
+
 Conversation Gym ist ein Programm, das es Nutzer:innen ermöglicht, professionelle Gesprächssituationen wie z.B. Coaching-Sitzungen, Meetings, Bewerbungsgespräche und Verkaufsgespräche vorab in einer simulierten Umgebung zu trainieren.
 Da sich das Projekt in einem frühen Entwicklungsstadium befindet, sind einige Funktionen noch in der Beta-Phase und möglicherweise nicht voll funktionsfähig.
 
