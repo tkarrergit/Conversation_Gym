@@ -26,11 +26,11 @@ Obwohl das Projekt noch unvollständig ist, dient es mir als wertvolles Beispiel
 ## **Lernfortschritte** 
 
 **Was ich gelernt habe:** 
-- Vielfältige Erfahrungen mit dem Flet-Framework zur GUI-Entwicklung
-- Erste Erfahrungen im Einbinden von Videos in eine GUI
-- Wie sinnvoll eine gut strukturiertes Projekts von Beginn an ist 
+- Vielfältige Erfahrungen mit dem Flet-Framework zur GUI-Entwicklung.
+- Erste Erfahrungen im Einbinden von Videos in eine GUI.
+- Wie sinnvoll eine gut strukturiertes Projekt ist. 
 - Welchen Aufwand eine nachträgliche Strukturierung bedeutet.
-- Erfahrung in der Umwandlung von Projekten in lauffähige Windowsprogramme mit auto-py-to-exe
+- Erfahrung in der Umwandlung von Projekten in lauffähige Windowsprogramme mit auto-py-to-exe.
 - Das es wichtig ist vorher zu bedenken welche sensiblen Daten vom Commit auszuschließen sind.
 ---
 ## **Features**
