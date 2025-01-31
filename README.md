@@ -7,14 +7,17 @@ Early Development / Beta Features
 		April, 2024 bis September, 2024
 
 **Technologien:** 
-		Python, Flet, Huggchat, Vosk, pyttsx3
-
+- **Python** – Hauptsprache des Projekts, ideal für die schnelle Entwicklung und Flexibilität.
+- **Flet** – Framework zur Entwicklung von interaktiven GUIs, mit dem ich fortgeschrittene Benutzeroberflächen realisiere.
+- **Vosk** – Offline-Spracherkennung für eine datenschutzfreundliche und zuverlässige Sprachinteraktion.
+- **Pyttsx3** – Offline-Sprachausgabe, ermöglicht eine realistische und interaktive Kommunikation mit dem Benutzer.
+- **HuggingChat** (Soulter/hugging-chat-api) – Integration eines Open-Source-Sprachmodells, das vielseitige Einsatzmöglichkeiten in künftigen Weiterentwicklungen des Projekts bietet.
 ---
 
 ## **Projektbeschreibung** 
-Conversation Gym ist ein Programm, das es Nutzer:innen ermöglicht, professionelle Gesprächssituationen wie z.B. Coaching-Sitzungen, Meetings, Bewerbungsgespräche und Verkaufsgespräche vorab in einer simulierten Umgebung zu trainieren.
+**Conversation Gym** ist eine Anwendung, die es Nutzer:innen ermöglicht, berufliche Gesprächssituationen wie Coaching-Sitzungen, Bewerbungsgespräche und Meetings zu simulieren und zu trainieren. Diese Anwendung nutzt fortschrittliche Technologien wie Spracherkennung und Sprachmodell-Integration, um eine realistische und interaktive Übungserfahrung zu bieten. 
 
-Dieses Projekt wurde von mir entwickelt, um die Erstellung von GUI-Anwendungen mit Flet zu üben und um in meiner Ausbildung zum Systemischen-Coach die vielfältigen Methoden und Techniken frühzeitig praxisnah üben zu können. 
+Dieses Projekt wurde von mir entwickelt, um die Erstellung von GUI-Anwendungen mit Flet zu üben und um in meiner Ausbildung zum Systemischen-Coach die vielfältigen Methoden und Techniken frühzeitig praxisnah üben zu können.
 
 Obwohl das Projekt noch unvollständig ist, dient es mir als wertvolles Beispiel für: 
 - eine GUI-Anwendung.
@@ -26,12 +29,11 @@ Obwohl das Projekt noch unvollständig ist, dient es mir als wertvolles Beispiel
 ## **Lernfortschritte** 
 
 **Was ich gelernt habe:** 
-- Vielfältige Erfahrungen mit dem Flet-Framework zur GUI-Entwicklung.
-- Erste Erfahrungen im Einbinden von Videos in eine GUI.
-- Wie sinnvoll eine gut strukturiertes Projekt ist. 
-- Welchen Aufwand eine nachträgliche Strukturierung bedeutet.
-- Erfahrung in der Umwandlung von Projekten in lauffähige Windowsprogramme mit auto-py-to-exe.
-- Das es wichtig ist vorher zu bedenken welche sensiblen Daten vom Commit auszuschließen sind.
+- Erweiterte Kenntnisse im **Flet-Framework** zur **GUI-Entwicklung** und der Gestaltung interaktiver Benutzeroberflächen.
+- Erste praktische Erfahrungen im **Einbinden von Videos** in eine GUI und die Erstellung von **Chat-Anwendungen**.
+- Vertiefte Kenntnisse in der **Integration von Spracherkennungs- (Vosk) und Sprachausgabe-Tools (pyttsx3)** für datenschutzfreundliche Anwendungen.
+- Wertvolle Erfahrungen in der **Strukturierung und Organisation von Code** sowie im Umgang mit **Versionierung und Bibliotheksmanagement** (z. B. durch das Update von Bibliotheken wie huggchat).
+- Erfahrung in der **Umwandlung von Python-Projekten in ausführbare Windows-Programme** mit **auto-py-to-exe**.
 ---
 ## **Features**
 **Aktuell Implementiert:**
@@ -49,13 +51,14 @@ Obwohl das Projekt noch unvollständig ist, dient es mir als wertvolles Beispiel
 - Erstellen individueller Gesprächsszenarien durch Nutzer:innen (derzeit eingeschränkte Funktionalität).
 
 ## **Hinweise zur Bibliotheksverwendung** 
-Dieses Projekt verwendet huggchat, welches von Zeit zu Zeit Updates bekommt die vorübergehend die Funktionalität stören und ein Update der Bibliothek über **pip install --upgrade huggchat** notwendig macht. Grundsätzlich gilt das natürlich für alle anderen Bibliotheken auch, es kam nur im Entwicklungszeitraum nicht vor.
+- Dieses Projekt nutzt **huggchat**, welches gelegentlich Updates benötigt, die die Funktionalität vorübergehend beeinträchtigen können. Ein Update der Bibliothek erfolgt über pip install --upgrade huggchat.
+- Weitere Updates von verwendeten Bibliotheken sind ebenfalls regelmäßig erforderlich. (siehe Requirements.txt)
 
 ## **Zukünftige Entwicklungen (Optional)**  
-   - Verbesserte Anpassungsmöglichkeiten im Gesprächseditor.
-   - Auswahl der Sprachmodelle.
-   - Anbindung an eine Datenbank (z.B. sqlite3)
-   - Optimierung der Benutzeroberfläche dahingehend das die im Gesprächseditor entworfenen Gespräche automatisch im Auswahlmenü erscheinen.
+- Erweiterte Anpassungsmöglichkeiten im Gesprächseditor, um eine vollständigere Anpassung von Gesprächsszenarien zu ermöglichen.
+- Einführung von verschiedenen Sprachmodellen zur Verbesserung der Gesprächsführung und der Interaktivität.
+- Anbindung an eine Datenbank (z. B. SQLite), um die Verwaltung von Nutzerdaten und Gesprächsverläufen zu ermöglichen.
+- Optimierung der Benutzeroberfläche, sodass erstellte Gespräche direkt im Auswahlmenü des Gesprächseditors angezeigt werden können.
 ## Screenshots
 ![image](https://github.com/tkarrergit/Conversation_Gym/blob/main/Coversation_Gym_Screenshot_1.jpg?raw=true)
 
