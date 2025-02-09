@@ -1,0 +1,121 @@
+{
+ "version": "auto-py-to-exe-configuration_v1",
+ "pyinstallerOptions": [
+  {
+   "optionDest": "noconfirm",
+   "value": true
+  },
+  {
+   "optionDest": "filenames",
+   "value": "E:/Softwarentwicklung/Python/Conversation_Gym/main.py"
+  },
+  {
+   "optionDest": "onefile",
+   "value": false
+  },
+  {
+   "optionDest": "console",
+   "value": true
+  },
+  {
+   "optionDest": "clean_build",
+   "value": false
+  },
+  {
+   "optionDest": "strip",
+   "value": false
+  },
+  {
+   "optionDest": "noupx",
+   "value": false
+  },
+  {
+   "optionDest": "disable_windowed_traceback",
+   "value": false
+  },
+  {
+   "optionDest": "uac_admin",
+   "value": false
+  },
+  {
+   "optionDest": "uac_uiaccess",
+   "value": false
+  },
+  {
+   "optionDest": "argv_emulation",
+   "value": false
+  },
+  {
+   "optionDest": "bootloader_ignore_signals",
+   "value": false
+  },
+  {
+   "optionDest": "datas",
+   "value": "E:/Softwarentwicklung/Python/Conversation_Gym/all_functions.py;."
+  },
+  {
+   "optionDest": "datas",
+   "value": "E:/Softwarentwicklung/Python/Conversation_Gym/auswahlmenue.py;."
+  },
+  {
+   "optionDest": "datas",
+   "value": "E:/Softwarentwicklung/Python/Conversation_Gym/button_functions.py;."
+  },
+  {
+   "optionDest": "datas",
+   "value": "E:/Softwarentwicklung/Python/Conversation_Gym/coaching_gespraech.py;."
+  },
+  {
+   "optionDest": "datas",
+   "value": "E:/Softwarentwicklung/Python/Conversation_Gym/datenbank.py;."
+  },
+  {
+   "optionDest": "datas",
+   "value": "E:/Softwarentwicklung/Python/Conversation_Gym/gespraechs_editor.py;."
+  },
+  {
+   "optionDest": "datas",
+   "value": "E:/Softwarentwicklung/Python/Conversation_Gym/hugchat_functions.py;."
+  },
+  {
+   "optionDest": "datas",
+   "value": "E:/Softwarentwicklung/Python/Conversation_Gym/settings.py;."
+  },
+  {
+   "optionDest": "datas",
+   "value": "E:/Softwarentwicklung/Python/Conversation_Gym/shared.py;."
+  },
+  {
+   "optionDest": "datas",
+   "value": "E:/Softwarentwicklung/Python/Conversation_Gym/test.py;."
+  },
+  {
+   "optionDest": "datas",
+   "value": "E:/Softwarentwicklung/Python/Conversation_Gym/update_conversation_record_container.py;."
+  },
+  {
+   "optionDest": "datas",
+   "value": "E:/Softwarentwicklung/Python/Conversation_Gym/utilitys.py;."
+  },
+  {
+   "optionDest": "datas",
+   "value": "E:/Softwarentwicklung/Python/Conversation_Gym/Video.py;."
+  },
+  {
+   "optionDest": "datas",
+   "value": "E:/Softwarentwicklung/Python/Conversation_Gym/vosk_functions.py;."
+  },
+  {
+   "optionDest": "datas",
+   "value": "E:/Softwarentwicklung/Python/Conversation_Gym/assets;assets/"
+  },
+  {
+   "optionDest": "datas",
+   "value": "E:/Softwarentwicklung/Python/Conversation_Gym/cookies_snapshot;cookies_snapshot/"
+  }
+ ],
+ "nonPyinstallerOptions": {
+  "increaseRecursionLimit": true,
+  "manualArguments": ""
+ }
+}

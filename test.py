@@ -107,7 +107,7 @@ def sprich_stream_chat_satz(chatbot, user_input, conversation):
                     all_functions.stimme_auswahl_tts(stimme, "Dein Klient ist gerade nicht erreichbar....versuch es gleich nochmal....")
 
 def check_hugchat():
-        newconversation, chatbot = hugchat_initialize("sand.burg@mail.de", "Strand42!", settings.coaching)
+        newconversation, chatbot = hugchat_initialize("huggchat@proton.me", "Huggchat55%", settings.coaching)
         print(newconversation and chatbot)
         hugchat_assistent_stream(chatbot, "Wie heißt dein llm modell", newconversation)
 
