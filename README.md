@@ -6,12 +6,17 @@ Early Development / Beta Features
 **Entwicklungszeitraum:** 
 		April, 2024 bis September, 2024
 
+⚠️ **Achtung:** Bei der Nutzung von Hugging Chat kann es gerade zu folgenden serverseitigen Störungen kommen:
+- Fehler "Model overloaded"
+- Langsame Antworten durch volle Server
+- Chat bricht manchmal ab
+
 **Technologien:** 
 - **Python** – Hauptsprache des Projekts, ideal für die schnelle Entwicklung und Flexibilität.
 - **Flet** – Framework zur Entwicklung von interaktiven GUIs, mit dem ich fortgeschrittene Benutzeroberflächen realisiere.
 - **Vosk** – Offline-Spracherkennung für eine datenschutzfreundliche und zuverlässige Sprachinteraktion.
 - **Pyttsx3** – Offline-Sprachausgabe, ermöglicht eine realistische und interaktive Kommunikation mit dem Benutzer.
-- **HuggingChat** (Soulter/hugging-chat-api) – Integration eines Open-Source-Sprachmodells, das vielseitige Einsatzmöglichkeiten in künftigen Weiterentwicklungen des Projekts bietet.
+- **HugChat** (Soulter/hugging-chat-api) – Integration eines Open-Source-Sprachmodells, das vielseitige Einsatzmöglichkeiten in künftigen Weiterentwicklungen des Projekts bietet.
 ---
 
 ## **Projektbeschreibung** 
